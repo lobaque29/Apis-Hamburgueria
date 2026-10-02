@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#211a15">
+    <meta name="description" content="Hambúrgueres artesanais feitos na hora com ingredientes selecionados.">
+    <meta property="og:title" content="Brasa &amp; Pão — Hamburgueria artesanal">
+    <meta property="og:description" content="O sabor da brasa, com ingredientes selecionados e pedido fácil pelo WhatsApp.">
+    <meta property="og:type" content="website">
+    <title>Brasa &amp; Pão — Hamburgueria</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #211a15;
+            --muted: #766b61;
+            --paper: #fbf7f0;
+            --card: #fffdf9;
+            --accent: #e66b2e;
+            --accent-dark: #c64e1d;
+            --line: #eee5d9;
+            --green: #526b3c;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            color: #fffaf2;
+            background: rgb(33 26 21 / 86%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgb(255 255 255 / 8%);
+        }
+
+        .topbar-inner, .hero-inner, .menu-section, .footer-inner {
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .topbar-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 1.1rem;
+            font-weight: 850;
+            letter-spacing: -.04em;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), #ff9a4d);
+            box-shadow: 0 12px 22px rgb(230 107 46 / 28%);
+            font-size: 1.2rem;
+        }
+
+        .nav-link {
+            color: #f4c7a8;
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        .nav-link:hover { color: white; }
+
+        .hero {
+            overflow: hidden;
+            color: #fffaf2;
+            background:
+                radial-gradient(circle at top right, rgb(230 107 46 / 26%), transparent 28%),
+                linear-gradient(135deg, #211a15 0%, #2c1f1a 45%, #100d0b 100%);
+        }
+
+        .hero-inner {
+            min-height: 570px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 32px;
+            padding-top: 60px;
+            padding-bottom: 72px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 20px;
+            color: #f3b78f;
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 22px;
+            height: 2px;
+            content: "";
+            background: var(--accent);
+        }
+
+        h1 {
+            max-width: 610px;
+            margin: 0;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            letter-spacing: -.075em;
+            line-height: .98;
+        }
+
+        h1 span { color: #f18a4e; }
+
+        .hero-copy {
+            max-width: 455px;
+            margin: 22px 0 28px;
+            color: #d2c4b5;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 26px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 50px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 22px;
+            border: 0;
+            border-radius: 999px;
+            color: white;
+            background: linear-gradient(135deg, var(--accent), #ff8d52);
+            font: inherit;
+            font-weight: 800;
+            box-shadow: 0 18px 32px rgb(230 107 46 / 28%);
+            transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--accent-dark), #df5a22);
+            box-shadow: 0 20px 34px rgb(198 78 29 / 28%);
+        }
+
+        .button-secondary {
+            border: 1px solid rgb(255 255 255 / 16%);
+            background: rgb(255 255 255 / 4%);
+            color: #fef7ef;
+            box-shadow: none;
+        }
+
+        .button-secondary:hover {
+            background: rgb(255 255 255 / 8%);
+        }
+
+        .hero-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 22px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .hero-metrics li {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 120px;
+            color: #f5d5bd;
+            font-size: .8rem;
+        }
+
+        .hero-metrics strong {
+            color: white;
+            font-size: .9rem;
+            letter-spacing: -.02em;
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 410px;
+            overflow: hidden;
+            isolation: isolate;
+            border: 1px solid rgb(255 255 255 / 14%);
+            border-radius: 32px;
+            background:
+                radial-gradient(circle at 50% 45%, rgb(230 107 46 / 30%), transparent 58%),
+                #39241b;
+            box-shadow: 0 30px 70px rgb(0 0 0 / 32%);
+        }
+
+        .hero-art::after {
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            background: linear-gradient(180deg, rgb(14 10 7 / 4%) 35%, rgb(14 10 7 / 58%) 100%);
+            content: "";
+        }
+
+        .hero-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .hero-art:hover .hero-photo {
+            transform: scale(1.045);
+        }
+
+        .hero-note {
+            position: absolute;
+            z-index: 2;
+            right: 22px;
+            bottom: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 15px;
+            border: 1px solid rgb(255 255 255 / 22%);
+            border-radius: 999px;
+            color: #fffaf2;
+            background: rgb(33 26 21 / 78%);
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .02em;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-note::before {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #f4bd68;
+            box-shadow: 0 0 14px rgb(244 189 104 / 70%);
+            content: "";
+        }
+
+        .menu-section { padding-top: 78px; padding-bottom: 88px; }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 12px;
+            color: var(--accent-dark);
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -.06em;
+        }
+
+        .section-copy {
+            max-width: 300px;
+            margin: 0 0 4px;
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.6;
+        }
+
+        #menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+            gap: 18px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .menu-card {
+            position: relative;
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgb(255 255 255 / 100%), rgb(255 249 243 / 100%));
+            box-shadow: 0 10px 26px rgb(58 38 21 / 5%);
+            transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: #f0c3a7;
+            box-shadow: 0 18px 38px rgb(58 38 21 / 10%);
+        }
+
+        .menu-card-media {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 45%, rgb(230 107 46 / 22%), transparent 58%),
+                #39241b;
+        }
+
+        .menu-photo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .menu-card:hover .menu-photo {
+            transform: scale(1.06);
+        }
+
+        .menu-category {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            z-index: 1;
+            padding: 7px 11px;
+            border-radius: 999px;
+            border: 1px solid rgb(255 255 255 / 25%);
+            color: #fffaf2;
+            background: rgb(33 26 21 / 76%);
+            font-size: .72rem;
+            font-weight: 800;
+            backdrop-filter: blur(9px);
+        }
+
+        .menu-card-media-fallback::after {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            color: #f4bd68;
+            font-size: 3rem;
+            content: "🍔";
+        }
+
+        .menu-card-content {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px 22px 22px;
+        }
+
+        .menu-name {
+            margin: 0 0 8px;
+            font-size: 1.15rem;
+            font-weight: 850;
+            letter-spacing: -.03em;
+        }
+
+        .menu-description {
+            margin: 0 0 14px;
+            color: var(--muted);
+            font-size: .88rem;
+            line-height: 1.5;
+        }
+
+        .menu-price {
+            margin: auto 0 0;
+            padding-top: 2px;
+            color: var(--accent-dark);
+            font-size: 1.05rem;
+            font-weight: 900;
+        }
+
+        .menu-add {
+            min-height: 42px;
+            margin-top: 16px;
+            padding: 0 17px;
+            font-size: .88rem;
+        }
+
+        .order-panel {
+            margin-top: 32px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: linear-gradient(180deg, #fffdfb, #fff7f1);
+            box-shadow: 0 14px 30px rgb(58 38 21 / 6%);
+        }
+
+        .order-panel h3 {
+            margin: 0 0 8px;
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: -.04em;
+        }
+
+        .order-hint {
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.5;
+        }
+
+        .order-field {
+            display: block;
+            width: min(100%, 420px);
+            margin-bottom: 16px;
+        }
+
+        .order-field label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: .88rem;
+            font-weight: 800;
+        }
+
+        .order-field input {
+            width: 100%;
+            min-height: 46px;
+            padding: 0 13px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            color: var(--ink);
+            background: white;
+            font: inherit;
+            box-shadow: inset 0 1px 2px rgb(15 23 42 / 2%);
+        }
+
+        .order-items {
+            display: grid;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .order-empty {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .order-item-name { font-weight: 750; }
+        .order-item-price { color: var(--muted); font-size: .86rem; }
+
+        .order-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .quantity-button {
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            color: var(--ink);
+            background: white;
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .quantity-button:hover { border-color: var(--accent); }
+
+        .order-total {
+            margin: 0 0 18px;
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .whatsapp-button:disabled {
+            background: #b9afa5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .menu-message {
+            grid-column: 1 / -1;
+            padding: 28px;
+            border: 1px dashed #e8d5c2;
+            border-radius: 16px;
+            color: var(--muted);
+            background: rgb(255 253 249 / 70%);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .footer {
+            color: #cfc1b2;
+            background: #211a15;
+        }
+
+        .footer-inner {
+            display: flex;
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: .85rem;
+        }
+
+        .footer strong { color: #fffaf2; }
+
+        :focus-visible {
+            outline: 3px solid #f4bd68;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 680px) {
+            .topbar-inner, .hero-inner, .menu-section, .footer-inner {
+                width: min(100% - 36px, 520px);
+            }
+
+            .topbar-inner { min-height: 68px; }
+            .topbar-actions { gap: 14px; }
+            .nav-link { font-size: .82rem; }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding-top: 48px;
+                padding-bottom: 42px;
+            }
+
+            .hero-art {
+                min-height: 300px;
+                margin-top: 38px;
+                border-radius: 24px;
+            }
+
+            .hero-note { right: 14px; bottom: 14px; }
+            .hero-metrics { gap: 12px 18px; }
+            .hero-metrics li { min-width: 0; }
+            .menu-card-media { height: 200px; }
+            .menu-section { padding-top: 58px; padding-bottom: 62px; }
+            .section-heading { align-items: start; flex-direction: column; }
+            .section-copy { max-width: 430px; }
+        }
+
+        @media (max-width: 390px) {
+            .topbar-inner, .hero-inner, .menu-section, .footer-inner {
+                width: min(100% - 28px, 520px);
+            }
+
+            .brand { font-size: 1rem; }
+            .topbar-actions { gap: 10px; }
+            .nav-link { font-size: .76rem; }
+            .hero-actions { align-items: stretch; flex-direction: column; }
+            .hero-actions .button { width: 100%; }
+            .hero-art { min-height: 250px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="/" aria-label="Brasa e Pão, início">
+                <span class="brand-mark" aria-hidden="true">🍔</span>
+                <span>brasa &amp; pão</span>
+            </a>
+            <nav class="topbar-actions" aria-label="Navegação principal">
+                <a class="nav-link" href="#cardapio">Cardápio <span aria-hidden="true">↘</span></a>
+                <a class="nav-link" href="#order-form">Peça agora <span aria-hidden="true">→</span></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-inner">
+                <div>
+                    <p class="eyebrow">Hamburgueria artesanal</p>
+                    <h1 id="hero-title">A brasa acesa. Seu burger favorito <span>no ponto.</span></h1>
+                    <p class="hero-copy">Carne suculenta, pão macio e ingredientes selecionados. Feito na hora para transformar sua fome em momento especial.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#cardapio">Explorar o cardápio <span aria-hidden="true">→</span></a>
+                        <a class="button button-secondary" href="#order-form">Montar meu pedido</a>
+                    </div>
+                    <ul class="hero-metrics" aria-label="O que torna nossos burgers especiais">
+                        <li><strong>Na brasa</strong> sabor defumado</li>
+                        <li><strong>Feito na hora</strong> sempre fresquinho</li>
+                        <li><strong>Pedido fácil</strong> direto pelo WhatsApp</li>
+                    </ul>
+                </div>
+                <div class="hero-art">
+                    <img
+                        class="hero-photo"
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&amp;auto=format&amp;fit=crop&amp;q=85"
+                        alt="Hambúrguer artesanal com queijo, alface e tomate"
+                        fetchpriority="high"
+                    >
+                    <span class="hero-note">Preparado com fogo e carinho</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section" id="cardapio" aria-labelledby="menu-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Sabor sem atalhos</p>
+                    <h2 id="menu-title">Nosso cardápio</h2>
+                </div>
+                <p class="section-copy">Preparado na hora, com ingredientes selecionados e muito capricho.</p>
+            </div>
+            <ul id="menu-list" aria-live="polite" aria-busy="true">
+                <li class="menu-message">Preparando nosso cardápio...</li>
+            </ul>
+            <form class="order-panel" id="order-form">
+                <h3>Seu pedido</h3>
+                <p class="order-hint">Adicione seus favoritos e envie o pedido direto para o nosso WhatsApp.</p>
+                <div class="order-field">
+                    <label for="customer-name">Seu nome</label>
+                    <input id="customer-name" name="nome" autocomplete="name" required>
+                </div>
+                <div class="order-field">
+                    <label for="customer-phone">Seu telefone</label>
+                    <input id="customer-phone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" required>
+                </div>
+                <div class="order-field">
+                    <label for="customer-address">Endereço de entrega</label>
+                    <input id="customer-address" name="endereco" autocomplete="street-address" required>
+                </div>
+                <ul class="order-items" id="order-items" aria-live="polite">
+                    <li class="order-empty">Seu pedido ainda está vazio. Escolha um hambúrguer acima.</li>
+                </ul>
+                <p class="order-total" id="order-total">Total: R$ 0,00</p>
+                <p class="order-hint" id="order-feedback" role="status" aria-live="polite"></p>
+                <button class="button whatsapp-button" id="whatsapp-button" type="submit" disabled>
+                    Enviar pedido pelo WhatsApp <span aria-hidden="true">→</span>
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span><strong>brasa &amp; pão</strong> · Hamburgueria artesanal</span>
+            <span>Feito com carinho e uma pitada de brasa.</span>
+        </div>
+    </footer>
+
+    <script>
+        const cardapioPadrao = [
+            {
+                nome: 'Brasa Clássico',
+                categoria: 'Clássico',
+                descricao: 'Hambúrguer artesanal, queijo prato, alface, tomate e molho da casa.',
+                preco: 29.90
+            },
+            {
+                nome: 'Cheddar & Bacon',
+                categoria: 'Mais pedido',
+                descricao: 'Burger na brasa, cheddar cremoso, bacon crocante e cebola caramelizada.',
+                preco: 34.90
+            },
+            {
+                nome: 'Costela BBQ',
+                categoria: 'Especial',
+                descricao: 'Blend de costela, queijo muçarela, molho barbecue e cebola crispy.',
+                preco: 36.90
+            },
+            {
+                nome: 'Duplo Smash',
+                categoria: 'Duplo',
+                descricao: 'Dois smash burgers, queijo cheddar, picles e molho especial.',
+                preco: 38.90
+            },
+            {
+                nome: 'Frango Crocante',
+                categoria: 'Frango',
+                descricao: 'Filé de frango empanado, queijo, alface fresca e maionese temperada.',
+                preco: 29.90
+            },
+            {
+                nome: 'Veggie da Horta',
+                categoria: 'Vegetariano',
+                descricao: 'Burger de grão-de-bico, queijo, rúcula, tomate e molho de ervas.',
+                preco: 28.90
+            },
+            {
+                nome: 'Pimenta Brava',
+                categoria: 'Picante',
+                descricao: 'Burger artesanal, queijo pepper jack, jalapeño e maionese picante.',
+                preco: 35.90
+            },
+            {
+                nome: 'Gorgonzola & Cebola',
+                categoria: 'Especial',
+                descricao: 'Burger na brasa, creme de gorgonzola, cebola caramelizada e rúcula.',
+                preco: 37.90
+            }
+        ];
+
+        const fotosCardapio = {
+            'Brasa Clássico': 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=900&auto=format&fit=crop&q=80',
+            'Cheddar & Bacon': 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=900&auto=format&fit=crop&q=80',
+            'Costela BBQ': 'https://images.unsplash.com/photo-1550317138-10000687a72b?w=900&auto=format&fit=crop&q=80',
+            'Duplo Smash': 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=900&auto=format&fit=crop&q=80',
+            'Frango Crocante': 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=900&auto=format&fit=crop&q=80',
+            'Crispy Chicken': 'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=900&auto=format&fit=crop&q=80',
+            'Veggie da Horta': 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=900&auto=format&fit=crop&q=80',
+            'Quatro Queijos': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&auto=format&fit=crop&q=80',
+            'Pimenta Brava': 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=900&auto=format&fit=crop&q=80',
+            'Picante da Casa': 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=900&auto=format&fit=crop&q=80',
+            'BBQ Onion': 'https://images.unsplash.com/photo-1550317138-10000687a72b?w=900&auto=format&fit=crop&q=80',
+            'Gorgonzola & Cebola': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&auto=format&fit=crop&q=80'
+        };
+        const galeriaCardapio = Object.values(fotosCardapio);
+
+        const carrinho = new Map();
+        const botoesAdicionar = new Map();
+
+        function chaveItem(item) {
+            return String(item._id || item.nome);
+        }
+
+        function formatarPreco(valor) {
+            return Number(valor).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+
+        function atualizarCarrinho() {
+            const lista = document.getElementById('order-items');
+            const totalElemento = document.getElementById('order-total');
+            const botaoWhatsApp = document.getElementById('whatsapp-button');
+            lista.replaceChildren();
+
+            let total = 0;
+            for (const [chave, entrada] of carrinho) {
+                const subtotal = Number(entrada.item.preco) * entrada.quantidade;
+                total += subtotal;
+
+                const linha = document.createElement('li');
+                linha.className = 'order-item';
+
+                const detalhes = document.createElement('span');
+                const nome = document.createElement('span');
+                nome.className = 'order-item-name';
+                nome.textContent = entrada.item.nome;
+                const preco = document.createElement('span');
+                preco.className = 'order-item-price';
+                preco.textContent = ` · ${formatarPreco(subtotal)}`;
+                detalhes.append(nome, preco);
+
+                const quantidade = document.createElement('span');
+                quantidade.className = 'order-quantity';
+
+                const remover = document.createElement('button');
+                remover.className = 'quantity-button';
+                remover.type = 'button';
+                remover.textContent = '−';
+                remover.setAttribute('aria-label', `Remover uma unidade de ${entrada.item.nome}`);
+                remover.addEventListener('click', () => alterarQuantidade(chave, -1));
+
+                const valorQuantidade = document.createElement('span');
+                valorQuantidade.textContent = String(entrada.quantidade);
+                valorQuantidade.setAttribute('aria-label', 'Quantidade');
+
+                const adicionar = document.createElement('button');
+                adicionar.className = 'quantity-button';
+                adicionar.type = 'button';
+                adicionar.textContent = '+';
+                adicionar.setAttribute('aria-label', `Adicionar uma unidade de ${entrada.item.nome}`);
+                adicionar.addEventListener('click', () => alterarQuantidade(chave, 1));
+
+                quantidade.append(remover, valorQuantidade, adicionar);
+                linha.append(detalhes, quantidade);
+                lista.appendChild(linha);
+            }
+
+            if (carrinho.size === 0) {
+                const vazio = document.createElement('li');
+                vazio.className = 'order-empty';
+                vazio.textContent = 'Seu pedido ainda está vazio. Escolha um hambúrguer acima.';
+                lista.appendChild(vazio);
+            }
+
+            totalElemento.textContent = `Total: ${formatarPreco(total)}`;
+            botaoWhatsApp.disabled = carrinho.size === 0;
+
+            for (const [chave, botao] of botoesAdicionar) {
+                const quantidade = carrinho.get(chave)?.quantidade || 0;
+                botao.textContent = quantidade ? `Adicionar mais (${quantidade})` : 'Adicionar ao pedido';
+                botao.setAttribute('aria-label', quantidade
+                    ? `Adicionar mais ${botao.dataset.nome}; ${quantidade} no pedido`
+                    : `Adicionar ${botao.dataset.nome} ao pedido`);
+            }
+        }
+
+        function alterarQuantidade(chave, alteracao, item) {
+            const entrada = carrinho.get(chave);
+            if (!entrada && !item) return;
+
+            const quantidade = (entrada?.quantidade || 0) + alteracao;
+            if (quantidade <= 0) {
+                carrinho.delete(chave);
+            } else {
+                carrinho.set(chave, { item: entrada?.item || item, quantidade });
+            }
+
+            atualizarCarrinho();
+        }
+
+        function renderizarCardapio(itens, aviso) {
+            const lista = document.getElementById('menu-list');
+            lista.replaceChildren();
+            botoesAdicionar.clear();
+
+            if (aviso) {
+                const nota = document.createElement('li');
+                nota.className = 'menu-message';
+                nota.textContent = aviso;
+                lista.appendChild(nota);
+            }
+
+            itens.forEach((item, indice) => {
+                const card = document.createElement('li');
+                card.className = 'menu-card';
+
+                const media = document.createElement('div');
+                media.className = 'menu-card-media';
+
+                const categoria = document.createElement('span');
+                categoria.className = 'menu-category';
+                categoria.textContent = item.categoria;
+                media.appendChild(categoria);
+
+                const foto = document.createElement('img');
+                foto.className = 'menu-photo';
+                foto.src = fotosCardapio[item.nome] || galeriaCardapio[indice % galeriaCardapio.length];
+                foto.alt = `${item.nome} — sugestão de apresentação`;
+                foto.loading = 'lazy';
+                foto.decoding = 'async';
+                foto.addEventListener('error', () => {
+                    foto.hidden = true;
+                    media.classList.add('menu-card-media-fallback');
+                }, { once: true });
+                media.appendChild(foto);
+
+                const nome = document.createElement('h3');
+                nome.className = 'menu-name';
+                nome.textContent = item.nome;
+
+                const conteudo = [nome];
+                if (item.descricao) {
+                    const descricao = document.createElement('p');
+                    descricao.className = 'menu-description';
+                    descricao.textContent = item.descricao;
+                    conteudo.push(descricao);
+                }
+
+                const preco = document.createElement('p');
+                preco.className = 'menu-price';
+                preco.textContent = formatarPreco(item.preco);
+
+                conteudo.push(preco);
+
+                const adicionar = document.createElement('button');
+                adicionar.className = 'button menu-add';
+                adicionar.type = 'button';
+                adicionar.dataset.nome = item.nome;
+                adicionar.addEventListener('click', () => alterarQuantidade(chaveItem(item), 1, item));
+                botoesAdicionar.set(chaveItem(item), adicionar);
+                conteudo.push(adicionar);
+
+                const corpo = document.createElement('div');
+                corpo.className = 'menu-card-content';
+                corpo.append(...conteudo);
+                card.append(media, corpo);
+                lista.appendChild(card);
+            });
+
+            lista.setAttribute('aria-busy', 'false');
+            atualizarCarrinho();
+        }
+
+        async function carregarCardapio() {
+            const lista = document.getElementById('menu-list');
+
+            try {
+                const resposta = await fetch('/cardapio');
+                if (!resposta.ok) {
+                    throw new Error(`Erro ao carregar cardápio (${resposta.status})`);
+                }
+
+                const itens = await resposta.json();
+                const disponiveis = itens.filter((item) => item.disponivel !== false);
+
+                if (disponiveis.length === 0) {
+                    renderizarCardapio(cardapioPadrao, 'Confira nossas opções enquanto atualizamos o cardápio.');
+                    return;
+                }
+
+                renderizarCardapio(disponiveis);
+            } catch (erro) {
+                console.error('Não foi possível carregar o cardápio:', erro);
+                renderizarCardapio(cardapioPadrao, 'Cardápio de demonstração — as opções da casa continuam disponíveis.');
+            }
+        }
+
+        document.getElementById('order-form').addEventListener('submit', async (evento) => {
+            evento.preventDefault();
+            const nome = document.getElementById('customer-name').value.trim();
+            const telefone = document.getElementById('customer-phone').value.trim();
+            const endereco = document.getElementById('customer-address').value.trim();
+            if (!nome || !telefone || !endereco || carrinho.size === 0) return;
+
+            const botao = document.getElementById('whatsapp-button');
+            const feedback = document.getElementById('order-feedback');
+            const itens = Array.from(carrinho.values(), ({ item, quantidade }) => ({
+                nome: item.nome,
+                preco: Number(item.preco),
+                quantidade
+            }));
+
+            botao.disabled = true;
+            feedback.textContent = 'Enviando seu pedido...';
+            try {
+                const resposta = await fetch('/pedidos/whatsapp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, telefone, endereco, itens })
+                });
+                const resultado = await resposta.json();
+                if (!resposta.ok) {
+                    throw new Error(resultado.erro || 'Não foi possível enviar o pedido.');
+                }
+
+                feedback.textContent = 'Pedido enviado automaticamente para o WhatsApp da hamburgueria!';
+            } catch (erro) {
+                console.error('Não foi possível enviar o pedido:', erro);
+                feedback.textContent = erro.message || 'Não foi possível enviar o pedido. Tente novamente.';
+            } finally {
+                botao.disabled = carrinho.size === 0;
+            }
+        });
+
+        carregarCardapio();
+    </script>
+</body>
+</html>
